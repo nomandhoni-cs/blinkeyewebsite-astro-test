@@ -1,7 +1,10 @@
 ---
 import { Sidebar } from "@/components/Sidebar";
 import "../styles/global.css";
-import StaryBackground from "./StaryBackground.astro";
+import StarryBackground from "./StarryBackground";
+import AnnouncementBar from "./announcement-bar"
+import Footer from "./Footer"
+import Header from "./header"
 
 interface Props {
   title: string;
@@ -78,7 +81,9 @@ const {
     />
   </head>
   <body>
-    <Sidebar navigation={navigation} client:load />
+    <AnnouncementBar />
+    <Header client:idle/>
+    <!-- <Sidebar navigation={navigation} client:load /> -->
 
     <main class="flex flex-1 flex-col">
       <div class="relative isolate">
@@ -86,10 +91,11 @@ const {
           class="absolute inset-x-0 -z-10 transform-gpu overflow-hidden"
           aria-hidden="true"
         >
-          <StaryBackground />
         </div>
+        <StarryBackground client:idle/>
         <slot />
       </div>
     </main>
+    <Footer />
   </body>
 </html>
